@@ -29,7 +29,7 @@ if (process.env.ENVIRONMENT == "testing"){
 
     router.get('/user/:userId', post.getPostsByUserId);
 
-    router.get('/:groupId', post.getPostsByGroupId);
+    router.get('/:groupIds', post.getPostsByGroupIds);
 
     router.post('/', checkJwt, validation.postRules, post.createPost);
 

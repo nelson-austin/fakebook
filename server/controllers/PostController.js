@@ -34,10 +34,10 @@ const getPostById = async (req, res) => {
   }
   }
 
-const getPostsByGroupId = async (req, res) => {
+const getPostsByGroupIds = async (req, res) => {
     try {
-      const groupId = req.params.groupId;
-      const postInfo = await PostModel.find({ group_id: groupId});
+      const groupIds = req.params.groupIds.split(",");
+      const postInfo = await PostModel.find({ group_id: {$in: groupIds } });
       if (postInfo) {
         res.status(200).json(postInfo);
       } else {
@@ -131,4 +131,4 @@ const deletePost = async (req, res) => {
     }
   }
 
-module.exports = { getPosts, getPostsByGroupId, createPost, updatePost, deletePost, getPostById, getPostsByUserId };
+module.exports = { getPosts, getPostsByGroupIds, createPost, updatePost, deletePost, getPostById, getPostsByUserId };
