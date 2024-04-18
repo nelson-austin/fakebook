@@ -7,8 +7,8 @@ const postSchema = new mongoose.Schema({
         required: true
     },
     group_id: {
-        type: Number,
-        default: 0
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group' // Reference to the Group collection
     },
     content: {
         type: String,

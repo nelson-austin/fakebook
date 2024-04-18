@@ -3,7 +3,7 @@ const validator = require('../helper/validate');
 const postRules = (req, res, next) => {
   const validationRule = {
     user_id: 'required|string',
-    group_id: 'numeric',
+    group_id: 'required',
     content: 'required|string',
     likes: 'numeric',
     comments: 'array',
