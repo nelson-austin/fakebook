@@ -6,7 +6,7 @@ const userRules = (req, res, next) => {
     given_name:'string',
     family_name:'string',
     name: 'required|string',
-    day_joined: 'required|numeric',
+    picture: 'required|string',
     sub: 'required|string'
   };
   validator(req.body, validationRule, {}, (err, status) => {

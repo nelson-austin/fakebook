@@ -19,8 +19,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    day_joined: {
-        type: Number,
+    picture: {
+        type: String,
         required: true,
     },
     groups: {

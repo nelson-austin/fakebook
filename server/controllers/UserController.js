@@ -6,7 +6,7 @@ const { ObjectId } = require('mongodb');
 
 const createUserAndLogin = async (req, res) => {
     try {
-      const { email, given_name, family_name, name, day_joined, groups, sub } =
+      const { email, given_name, family_name, name, picture, groups, sub } =
         req.body;
         //Need to check sub before continuing post process for any pre-existing account with same sub
 
@@ -19,7 +19,7 @@ const createUserAndLogin = async (req, res) => {
       }
 
       const userInfo = await UserModel.create({
-        email, given_name, family_name, name, day_joined, groups, sub
+        email, given_name, family_name, name, picture, groups, sub
       });
       // console.log(messages);
       if (userInfo) {
