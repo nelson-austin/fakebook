@@ -36,7 +36,7 @@ const getPostById = async (req, res) => {
 
 const getPostsByGroupId = async (req, res) => {
     try {
-      const groupId = parseInt(req.params.groupId);
+      const groupId = req.params.groupId;
       const postInfo = await PostModel.find({ group_id: groupId});
       if (postInfo) {
         res.status(200).json(postInfo);
