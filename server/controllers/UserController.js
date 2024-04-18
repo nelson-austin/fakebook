@@ -35,7 +35,7 @@ const createUserAndLogin = async (req, res) => {
         // if (!ObjectId.isValid(req.params.id)) {
         //     return res.status(400).json({ error: "Must use valid mongo id" });
         //   }
-      const userInfo = await UserModel.find({sub: req.params.id});
+      const userInfo = await UserModel.findOne({sub: req.params.id});
       // console.log(messages);
       if (userInfo) {
         return res.status(200).json(userInfo);
