@@ -118,7 +118,7 @@
         given_name: user.given_name,
         family_name: user.family_name,
         name: user.name,
-        day_joined: Date.now(),
+        picture: user.picture,
         groups: [],
         sub: user.sub,
       }),

@@ -19,20 +19,19 @@ export async function fetchPosts(type, user = null) {
     } else if (type == "group") {
       const data = [];
       const response = await fetch(
-        `https://server-fakebook.onrender.com/users/${user.sub}`,
+        `https://server-fakebook.onrender.com/users/${user}`,
         options
       );
       const userData = await response.json();
       const groups = userData.groups;
+      console.log(groups);
       if (groups) {
-        for (var i = 0; i < groups.length; i++) {
-          const result = await fetch(
-            "https://server-fakebook.onrender.com/posts/" + groups[i]
-          );
-          for (var i = 0; i < result.length; i++) {
-            posts.push(result);
-          }
-        }
+        const result = await fetch(
+          "https://server-fakebook.onrender.com/posts/6620b314d5d960742c972dcb"
+        );
+        console.log(result);
+        posts.set(result);
+        console.log(posts);
       } else {
         console.log("No groups found");
         posts.set(data);
@@ -43,7 +42,7 @@ export async function fetchPosts(type, user = null) {
       console.log(user);
 
       const response = await fetch(
-        `https://server-fakebook.onrender.com/posts/user/${user.sub}`,
+        `https://server-fakebook.onrender.com/posts/user/${user}`,
         options
       );
 

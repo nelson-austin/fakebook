@@ -46,6 +46,7 @@
         padding: 10px;
         margin-top: 20px;
         border-radius: 5px;
+        border: none;
     }
     .join-button {
         color: white;
@@ -53,6 +54,7 @@
         display: none;
         padding: 10px;
         border-radius: 5px;
+        border: none;
         width: 100%;
     }
 </style>

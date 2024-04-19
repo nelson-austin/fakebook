@@ -1,9 +1,9 @@
 <script>
   import { onMount } from "svelte";
 
-  let user;
-  let error = false;
   export let post;
+  let name;
+  let picture;
 
   onMount(async () => {
     // await getPostAuthor(post.user_id)
@@ -76,29 +76,39 @@
     return `${month} ${date.getDate()}, ${date.getFullYear()}, ${displayHours}:${minutes}${timeSuffix}`;
   }
 
-  //   async function getPostAuthor(userId) {
-  //   try {
-  //     let response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`);
-  //     user = await response.json();
-  //     if (user.error) {
-  //       throw new Error("User not found");
-  //     }
-  //     console.log(user);
-  //   } catch(e) {
-  //     console.log(`An error occured: ${e}`);
-  //     error = true;
-  //   }
-  // }
+    async function getPostAuthor(userId) {
+    try {
+      let response = await fetch(`https://server-fakebook.onrender.com/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const user = await response.json();
+      if (user.error) {
+        throw new Error("User not found");
+      }
+      console.log(user);
+      console.log(user.name);
+      name = user.name;
+      picture = user.picture;
+      console.log(picture);
+    } catch(e) {
+      console.log(`An error occured: ${e}`);
+    }
+  }
+
+  onMount(async () => {
+    getPostAuthor(post?.user_id);
+  });
 </script>
 
 <div class="post-container">
   <div class="post-header">
-    {#if !error}
-      <h3>{post?.user_id}</h3>
-    {:else}
-      <h3>Unknown User</h3>
-    {/if}
-    <p>{formatDate(new Date(post.createdAt))}</p>
+    <img class="profile-pic" src={picture} alt="profile">
+    <div class="header-info">
+      <h3>{name}</h3>
+      <p>{formatDate(new Date(post.createdAt))}</p>
+    </div>
   </div>
   <div class="post-content">
     <p>{post.content}</p>
@@ -120,12 +130,12 @@
   }
 
   .post-container p {
-    margin: 0.5em 0em 0em 0em;
+    margin: 0;
   }
 
   .post-header {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
     margin-bottom: 0.5em;
   }
@@ -136,7 +146,13 @@
     padding: 1em;
     margin-top: 0.5em;
   }
-
+  .profile-pic {
+    border-radius: 50%;
+    width: 50px;
+  }
+  .header-info h3 {
+    margin: 0;
+  }
   /* @media (min-width: 708px) {
     .post-container {
       width: 90%; 

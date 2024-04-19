@@ -1,12 +1,48 @@
 <script>
-  import { isAuthenticated } from "../store.js";
+  import { user, isAuthenticated } from "../store.js";
+
+  let postContent;
+
+  async function createPost() {
+    const postData = {
+      user_id: $user.sub,
+      group_id: '6620b314d5d960742c972dcb',
+      content: postContent,
+      likes: 0,
+      comments: []
+    }
+    try {
+      const response = await fetch("https://server-fakebook.onrender.com/posts", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+
+      if (response.ok) {
+        // Post created successfully
+        console.log("Post created!");
+    
+        
+      } else {
+        // Error creating post
+        console.log("Post failed!");
+        console.error("Failed to create post");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
+
 </script>
 {#if $isAuthenticated}
   <!-- ↑↑↑↑↑↑ only show posts if logged in -->
-  <form id="new-post" action="" method="post">
+  <form id="new-post" on:submit|preventDefault={createPost}>
     <label for="new-post-content"><b>So what's up?</b></label>
-    <textarea name="new-post-content" id="new-post-content" required></textarea>
-    <input type="submit" class="new-post-btn" value="Create New Post">
+    <textarea name="new-post-content" id="new-post-content" bind:value={postContent} required></textarea>
+    <button type="submit" class="new-post-btn">Create New Post</button>
   </form>
 {/if}
 <style>

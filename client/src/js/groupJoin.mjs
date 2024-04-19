@@ -1,4 +1,4 @@
-import { groups, posts } from './store';
+import { myGroups, groups, posts } from './store';
 
 export async function fetchGroups() {
     try {
@@ -6,6 +6,25 @@ export async function fetchGroups() {
         const data = await response.json();
         groups.set(data);
         console.log("fetching groups");
+        console.log(data);
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+    }
+}
+
+export async function fetchMyGroups(user) {
+    const options = {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        }
+    }
+    try {
+        const response = await fetch(`https://server-fakebook.onrender.com/users/${user}`, options);
+        const data = await response.json();
+        myGroups.set(data);
+        console.log("fetching my groups");
         console.log(data);
     } catch (error) {
         console.error("Error fetching posts:", error);
@@ -25,12 +44,11 @@ export async function fetchGroupPosts(group) {
 }
 export async function joinGroup(group, user) {
     try {
-        const token = localStorage.getItem('token');
         const options = {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
                 groupId: group

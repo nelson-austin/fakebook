@@ -2,8 +2,8 @@
   import { user, newGroupForm } from "../store";
   import { fetchGroups } from "../groupJoin.mjs";
 
-  let groupName = "";
-  let groupDescription = "";
+  let groupName;
+  let groupDescription;
 
   async function createGroup() {
     const groupData = {

@@ -29,7 +29,7 @@
 {/if}
 <div class="container">
   <div class="logo">
-    <a href="/index.html"> Fac<span class="highlight">Bok</span></a>
+    <a href="/index.html"> Fake<span class="highlight">Book</span></a>
   </div>
   {#if $isAuthenticated}
     <ProfileButton />

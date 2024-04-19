@@ -48,7 +48,9 @@
     background-color: #0056b3;
   }
 
-
+  .feed-container {
+    margin-bottom: 100px;
+  }
 
   /* your existing styles for post-header, post-content, post-footer, etc. */
 </style>

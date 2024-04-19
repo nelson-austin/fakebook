@@ -7,6 +7,7 @@ export const popupOpen = writable(false);
 export const error = writable();
 export const posts = writable([]);
 export const groups = writable([]);
+export const myGroups = writable([]);
 
 export const newGroupForm = writable(false);
 
