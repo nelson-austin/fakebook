@@ -13,7 +13,7 @@
     
 </script>
 {#if $isAuthenticated}
-<section id="suggested-groups">
+<section id="suggested-groups" onmouseover="this.style.overflow='auto'" onmouseout="this.style.overflow='hidden'">
     <h1>Suggested Groups</h1>
     {#each $groups as group}
         <Group {group}></Group>
@@ -29,7 +29,7 @@
         margin-right: 20px;
         margin-bottom: 20px;
         height: 400px;
-        overflow-y: scroll;
+        overflow: hidden;
         /* -ms-overflow-style: none;  IE and Edge */
         /* scrollbar-width: none;  Firefox */
     }
