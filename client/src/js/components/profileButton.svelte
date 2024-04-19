@@ -172,14 +172,10 @@
 </div>
 
 <div class="center">
-  {$user.name}
 
   <div class="dropdown" data-dropdown="">
     <a class="dropdown-button" data-dropdown-button="" href="#">
-      <span
-        ><img class="userPic" src={$user.picture} alt="Profile Picture" />
-      </span>Profile</a
-    >
+      <img class="userPic" src={$user.picture} alt="Profile Picture" /></a>
     <ul class="dropdown-list" data-dropdown-list="">
       <div class="arrow"></div>
       <li class="has-border close" data-dropdown-close="">
@@ -236,10 +232,6 @@
     backdrop-filter: blur(5px);
     border: #0056b3 2em solid;
     border-radius: 10px;
-  }
-  .center {
-    align-items: center;
-    justify-content: center;
   }
   .dropdown-button {
     color: #00293f;
