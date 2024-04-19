@@ -81,6 +81,7 @@
   #groups {
     font-size: 1em;
     padding: 10px;
+    cursor: pointer;
   }
   .image {
     border-radius: 50%;
